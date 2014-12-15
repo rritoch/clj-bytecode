@@ -152,7 +152,7 @@ public class T_FieldInfoList  implements List<T_FieldInfo>, IListReader<T_FieldI
 	public T_FieldInfoList set(InputStream is, long count) throws IOException {
 		T_FieldInfoList r = new T_FieldInfoList();
 		
-		for(int i=0; i<count;i++) {
+		for(long i=0; i<count;i++) {
 			r = r.cons ((new T_FieldInfo()).set(is));
 		}
 		return r;

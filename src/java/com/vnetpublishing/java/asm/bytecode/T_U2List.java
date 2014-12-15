@@ -152,7 +152,7 @@ public class T_U2List implements IListReader<T_U2>, List<T_U2> {
 	public T_U2List set(InputStream is, long count) throws IOException {
 		T_U2List r = new T_U2List();
 		
-		for(int i=0; i<count;i++) {
+		for(long i=0; i<count;i++) {
 			r = r.cons((new T_U2()).set(is));
 		}
 		return r;
