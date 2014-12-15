@@ -31,6 +31,10 @@
   [cf ptr]
     (.get (.getConstantPoolList cf) ptr))
 
+(defn get-constant-pool-count
+  [cf]
+     (.getConstantPoolCount cf))
+
 (defn get-version
   [cf]
     [(.getMajorVersion cf) (.getMinorVersion cf)])

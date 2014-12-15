@@ -106,12 +106,12 @@ public class T_U2 extends Number implements IReader {
 		
 		byte[] nbval = new byte[2];
 		
-		if (bval[0] == 255) {
-			nbval[0] = 0;
-			nbval[1] = (byte) (bval[1] + 1);
+		if (bval[1] == 255) {
+			nbval[1] = 0;
+			nbval[0] = (byte) (bval[0] + 1);
 		} else {
-			nbval[0] = (byte)(bval[0] + 1);
-			nbval[1] = bval[1];
+			nbval[1] = (byte)(bval[1] + 1);
+			nbval[0] = bval[0];
 		}
 		
 		return new T_U2(nbval);

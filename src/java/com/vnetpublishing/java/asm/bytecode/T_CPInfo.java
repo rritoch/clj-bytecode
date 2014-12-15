@@ -3,10 +3,19 @@ package com.vnetpublishing.java.asm.bytecode;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Class_info;
 import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Double_info;
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Fieldref_info;
 import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Float_info;
 import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Integer_info;
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_InterfaceMethodref_info;
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_InvokeDynamic_info;
 import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Long_info;
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_MethodHandle_info;
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_MethodType_info;
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Methodref_info;
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_NameAndType_info;
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_String_info;
 import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Utf8_info;
 
 public class T_CPInfo implements IReader {
@@ -83,58 +92,45 @@ public class T_CPInfo implements IReader {
 		switch(vtag) {
 			case CONSTANT_Utf8:
 				r = (new T_CONSTANT_Utf8_info()).set(is);
+				break;
 			case CONSTANT_Integer:
 				r = (new T_CONSTANT_Integer_info()).set(is);
+				break;
 			case CONSTANT_Float:
 				r = (new T_CONSTANT_Float_info()).set(is);
+				break;
 			case CONSTANT_Long:
 				r = (new T_CONSTANT_Long_info()).set(is);
+				break;
 			case CONSTANT_Double:
 				r = (new T_CONSTANT_Double_info()).set(is);
+				break;
 			case CONSTANT_Class:
-				for (i = 0; i < 2; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
+				r = (new T_CONSTANT_Class_info()).set(is);
 				break;
 			case CONSTANT_String:
-				for (i = 0; i < 2; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
+				r = (new T_CONSTANT_String_info()).set(is);
 				break;
 			case CONSTANT_Fieldref:
-				for (i = 0; i < 4; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
+				r = (new T_CONSTANT_Fieldref_info()).set(is);
 				break;
 			case CONSTANT_Methodref:
-				for (i = 0; i < 4; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
+				r = (new T_CONSTANT_Methodref_info()).set(is);
 				break;
 			case CONSTANT_InterfaceMethodref:
-				for (i = 0; i < 4; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
+				r = (new T_CONSTANT_InterfaceMethodref_info()).set(is);
 				break;
 			case CONSTANT_NameAndType:
-				for (i = 0; i < 4; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
+				r = (new T_CONSTANT_NameAndType_info()).set(is);
 				break;
 			case CONSTANT_MethodHandle:
-				for (i = 0; i < 3; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
+				r = (new T_CONSTANT_MethodHandle_info()).set(is);
 				break;
 			case CONSTANT_MethodType:
-				for (i = 0; i < 2; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
+				r = (new T_CONSTANT_MethodType_info()).set(is);
 				break;
 			case CONSTANT_InvokeDynamic:
-				for (i = 0; i < 4; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
+				r = (new T_CONSTANT_InvokeDynamic_info()).set(is);
 				break;
 			default:
 				throw new IOException("Unknown CPInfo type (" + vtag + ")");
