@@ -161,10 +161,10 @@ public class T_U4 extends Number implements IReader {
 		long nlvalue = lvalue + val;
 		byte[] nbval = new byte[4];
 		
-		nbval[0] = (byte) (nlvalue & 255);
-		nbval[1] = (byte) ((nlvalue >> 8)& 255);
-		nbval[2] = (byte) ((nlvalue >> 16)& 255);
-		nbval[3] = (byte) ((nlvalue >> 24)& 255);
+		nbval[3] = (byte) (nlvalue & 255);
+		nbval[2] = (byte) ((nlvalue >> 8)& 255);
+		nbval[1] = (byte) ((nlvalue >> 16)& 255);
+		nbval[0] = (byte) ((nlvalue >> 24)& 255);
 		
 		return new T_U4(nbval);
 	}
