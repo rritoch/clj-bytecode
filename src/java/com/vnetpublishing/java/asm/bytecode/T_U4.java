@@ -19,13 +19,15 @@ public class T_U4 extends Number implements IReader {
 		bval = new byte[4];
 	}
 	
-	private T_U4(byte[] bval) {
+	private T_U4(byte[] bval_in) {
+		bval = bval_in;
 		lvalue = 0;
 		// BE 
 		for (int i = 0; i < bval.length; i++)
 		{
 		   lvalue = (lvalue << 8) + (bval[i] & 0xff);
 		}
+		
 	}
 	
 	public T_U4(T_U2 hi, T_U2 low) {
