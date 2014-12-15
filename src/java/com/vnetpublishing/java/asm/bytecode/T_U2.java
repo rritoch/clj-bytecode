@@ -147,8 +147,9 @@ public class T_U2 extends Number implements IReader {
 		
 		long nlvalue = lvalue + val;
 		
-		nbval[0] = (byte) (nlvalue & 255);
-		nbval[1] = (byte) ((nlvalue >> 8)& 255);
+		
+		nbval[0] = (byte) ((nlvalue >> 8)& 255);
+		nbval[1] = (byte) (nlvalue & 255);
 		
 		return new T_U2(nbval);
 	}
