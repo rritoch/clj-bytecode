@@ -105,7 +105,7 @@ public class T_CPInfoList  implements IListReader<T_CPInfo>, List<T_CPInfo> {
 
 	@Override
 	public T_CPInfo get(int index) {
-		T_CPInfo i = items.get(index);
+		T_CPInfo i = items.get(index-1);
 		if (i.getTag() == null) {
 			return null;
 		}
@@ -129,12 +129,14 @@ public class T_CPInfoList  implements IListReader<T_CPInfo>, List<T_CPInfo> {
 
 	@Override
 	public int indexOf(Object o) {
-		return items.indexOf(o);
+		int i = items.indexOf(o);
+		return i < 0 ? i : 1 + i;
 	}
 
 	@Override
 	public int lastIndexOf(Object o) {
-		return items.lastIndexOf(o);
+		int i = items.lastIndexOf(o);
+		return i < 0 ? i : 1 + i;
 	}
 
 	@Override
@@ -144,12 +146,12 @@ public class T_CPInfoList  implements IListReader<T_CPInfo>, List<T_CPInfo> {
 
 	@Override
 	public ListIterator<T_CPInfo> listIterator(int index) {
-		return items.listIterator(index);
+		return items.listIterator(index < 0 ? index : index - 1);
 	}
 
 	@Override
 	public List<T_CPInfo> subList(int fromIndex, int toIndex) {
-		return new T_CPInfoList(items.subList(fromIndex,  toIndex));
+		return new T_CPInfoList(items.subList(fromIndex-1,  toIndex-1));
 	}
 	
 	public T_CPInfoList cons(T_CPInfo i) {
