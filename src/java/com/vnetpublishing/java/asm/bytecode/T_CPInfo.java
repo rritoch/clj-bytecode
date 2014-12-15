@@ -3,7 +3,6 @@ package com.vnetpublishing.java.asm.bytecode;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.io.PushbackInputStream;
 
 public class T_CPInfo implements IReader {
 
@@ -77,9 +76,6 @@ public class T_CPInfo implements IReader {
 		int vtag = ntag.intValue();
 		
 		switch(vtag) {
-			case 0:
-				((PushbackInputStream)is).unread(0);
-				break;
 			case CONSTANT_Utf8:
 				
 				T_U1 tv_h = (new T_U1()).set(is);

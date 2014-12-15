@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.io.PushbackInputStream;
 
 
 public class ClassFile {
@@ -109,7 +108,7 @@ public class ClassFile {
 	}
 	
 	public void read() throws IOException {
-		InputStream bis = new PushbackInputStream(url.openStream());
+		InputStream bis = url.openStream();
 		
 		try {
 		

@@ -157,7 +157,16 @@ public class T_CPInfoList  implements IListReader<T_CPInfo>, List<T_CPInfo> {
 		T_CPInfoList r = new T_CPInfoList();
 		for (long i = 0; i < count; i++) {
 			System.out.println(i+":");
-			r = r.cons((new T_CPInfo()).set(is));
+			T_CPInfo item = (new T_CPInfo()).set(is);
+			r = r.cons(item);
+			
+			// CONSTANT_Double_info and CONSTANT_Long_info take 2 constant
+			T_U1 tag = item.getTag();
+			if ((tag.intValue() == T_CPInfo.CONSTANT_Long) ||
+				(tag.intValue() == T_CPInfo.CONSTANT_Double)) {
+				r = r.cons(new T_CPInfo());
+				i++;
+			}
 		}
 		return r;
 	}
