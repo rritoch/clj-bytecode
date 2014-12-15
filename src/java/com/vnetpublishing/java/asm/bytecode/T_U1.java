@@ -122,7 +122,7 @@ public class T_U1 extends Number implements IReader {
 	}
 	
 	public String toString() {
-		return String.format("0x%2x", lvalue);
+		return String.format("0x%2x", lvalue).replace(' ', '0');
 	}
 	
 	public byte[] getBytesBE() {

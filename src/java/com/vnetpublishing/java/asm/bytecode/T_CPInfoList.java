@@ -105,7 +105,11 @@ public class T_CPInfoList  implements IListReader<T_CPInfo>, List<T_CPInfo> {
 
 	@Override
 	public T_CPInfo get(int index) {
-		return items.get(index);
+		T_CPInfo i = items.get(index);
+		if (i.getTag() == null) {
+			return null;
+		}
+		return i;
 	}
 
 	@Override
@@ -149,7 +153,16 @@ public class T_CPInfoList  implements IListReader<T_CPInfo>, List<T_CPInfo> {
 	}
 	
 	public T_CPInfoList cons(T_CPInfo i) {
-		return new T_CPInfoList (i, this);
+		if (null == i.getTag()) {
+			return this;
+		}
+		T_CPInfoList c = new T_CPInfoList(i,this);
+		T_U1 tag = i.getTag();
+		if ((tag.intValue() == T_CPInfo.CONSTANT_Long) ||
+			(tag.intValue() == T_CPInfo.CONSTANT_Double)) {
+			c = new T_CPInfoList(new T_CPInfo(),c);
+		}
+		return c;
 	}
 	
 	@Override
@@ -163,7 +176,7 @@ public class T_CPInfoList  implements IListReader<T_CPInfo>, List<T_CPInfo> {
 			T_U1 tag = item.getTag();
 			if ((tag.intValue() == T_CPInfo.CONSTANT_Long) ||
 				(tag.intValue() == T_CPInfo.CONSTANT_Double)) {
-				r = r.cons(new T_CPInfo());
+				//r = r.cons(new T_CPInfo());
 				i++;
 			}
 		}
