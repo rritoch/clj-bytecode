@@ -116,7 +116,6 @@ public class ClassFile {
 		minor_version = (new T_U2()).set(bis);
 		major_version = (new T_U2()).set(bis);
 		T_U2 constant_pool_count = (new T_U2()).set(bis);
-		System.out.println("constant_pool_count = " + constant_pool_count);
 		constant_pool_list = (new T_CPInfoList()).set(bis,constant_pool_count.intValue()-1);
 		access_flags = (new T_U2()).set(bis);
 		this_class = (new T_U2()).set(bis);

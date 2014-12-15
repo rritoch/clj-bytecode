@@ -92,88 +92,73 @@ public class T_CPInfo implements IReader {
 					b[i] = tv.byteValue();
 					ninfo = ninfo.cons(tv);
 				}
-				System.out.println("Read Utf8 ("+ (new String(b,Charset.forName("UTF-8")))+ ")");
 				break;
 			case CONSTANT_Integer:
 				for (i = 0; i < 4; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read Integer");
 				break;
 			case CONSTANT_Float:
 				for (i = 0; i < 4; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read Float");
 				break;
 			case CONSTANT_Long:
 				for (i = 0; i < 8; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read Long");
 				break;
 			case CONSTANT_Double:
 				for (i = 0; i < 8; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read Double");
 				break;
 			case CONSTANT_Class:
 				for (i = 0; i < 2; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read Class");
 				break;
 			case CONSTANT_String:
 				for (i = 0; i < 2; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read String");
 				break;
 			case CONSTANT_Fieldref:
 				for (i = 0; i < 4; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read FieldRef");
 				break;
 			case CONSTANT_Methodref:
 				for (i = 0; i < 4; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read MethodRef");
 				break;
 			case CONSTANT_InterfaceMethodref:
 				for (i = 0; i < 4; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read InterfaceMethodRef");
 				break;
 			case CONSTANT_NameAndType:
 				for (i = 0; i < 4; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read NameAndType");
 				break;
 			case CONSTANT_MethodHandle:
 				for (i = 0; i < 3; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read MethodHandle");
 				break;
 			case CONSTANT_MethodType:
 				for (i = 0; i < 2; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read MethodType");
 				break;
 			case CONSTANT_InvokeDynamic:
 				for (i = 0; i < 4; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
 				}
-				System.out.println("Read InvokeDynamic");
 				break;
 			default:
-				System.out.println("FAIL!");
 				throw new IOException("Unknown CPInfo type (" + vtag + ")");
 		}
 		

@@ -156,7 +156,6 @@ public class T_CPInfoList  implements IListReader<T_CPInfo>, List<T_CPInfo> {
 	public T_CPInfoList set(InputStream is, long count) throws IOException {
 		T_CPInfoList r = new T_CPInfoList();
 		for (long i = 0; i < count; i++) {
-			System.out.println(i+":");
 			T_CPInfo item = (new T_CPInfo()).set(is);
 			r = r.cons(item);
 			
