@@ -32,8 +32,8 @@ public class T_CPInfo implements IReader {
 	// 17
 	static final int CONSTANT_InvokeDynamic = 18;
 	
-	private T_U1 tag;
-	private T_U1List info;
+	protected T_U1 tag;
+	protected T_U1List info;
 	
 	
 	public T_CPInfo() {
@@ -77,7 +77,7 @@ public class T_CPInfo implements IReader {
 		
 		switch(vtag) {
 			case CONSTANT_Utf8:
-				
+				/*
 				T_U1 tv_h = (new T_U1()).set(is);
 				ninfo = ninfo.cons(tv_h);
 				
@@ -92,7 +92,8 @@ public class T_CPInfo implements IReader {
 					b[i] = tv.byteValue();
 					ninfo = ninfo.cons(tv);
 				}
-				break;
+				*/
+				return (new T_CONSTANT_Utf8_info()).set(is);
 			case CONSTANT_Integer:
 				for (i = 0; i < 4; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));

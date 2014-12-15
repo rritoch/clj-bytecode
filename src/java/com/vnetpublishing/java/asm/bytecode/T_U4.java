@@ -178,6 +178,14 @@ public class T_U4 extends Number implements IReader {
 		return r;
 	}
 	
+	public T_U2 getHigh() {
+		return (new T_U2()).add((lvalue >> 16)&65535);
+	}
+	
+	public T_U2 getLow() {
+		return (new T_U2()).add(lvalue &65535);
+	}
+	
 	public String toString() {
 		return String.format("0x%8s", Integer.toHexString((int) lvalue)).replace(' ', '0');
 	}

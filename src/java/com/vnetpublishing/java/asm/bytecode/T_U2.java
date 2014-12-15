@@ -154,6 +154,14 @@ public class T_U2 extends Number implements IReader {
 		return new T_U2(nbval);
 	}
 	
+	public T_U1 getHigh() {
+		return (new T_U1()).add((lvalue >> 8)&255);
+	}
+	
+	public T_U1 getLow() {
+		return (new T_U1()).add(lvalue &255);
+	}
+	
 	public byte[] getBytesBE() {
 		byte[] r = new byte[2];
 		r[0] = bval[0];

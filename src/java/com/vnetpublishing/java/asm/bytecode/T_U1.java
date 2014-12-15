@@ -98,7 +98,7 @@ public class T_U1 extends Number implements IReader {
 		return lvalue;
 	}
 	
-	public long add(long val) {
+	public T_U1 add(long val) {
 		if (lvalue + val > 255) {
 			throw new ArithmeticException("Overflow error");
 		}
@@ -107,9 +107,10 @@ public class T_U1 extends Number implements IReader {
 			throw new ArithmeticException("Underflow error");
 		}
 		
-		bval[0] = (byte) (bval[0] + val);
-		lvalue += val;
-		return lvalue;
+		byte[] nbval = new byte[1];
+		nbval[0] = (byte) (bval[0] + val);
+		
+		return new T_U1(nbval);
 	}
 	
 	public boolean equals(Number n) {
@@ -118,6 +119,11 @@ public class T_U1 extends Number implements IReader {
 	
 	public int write(byte d[]) {
 		d[0] = bval[0];
+		return 1;
+	}
+	
+	public int write(byte d[], int offset) {
+		d[offset] = bval[0];
 		return 1;
 	}
 	
