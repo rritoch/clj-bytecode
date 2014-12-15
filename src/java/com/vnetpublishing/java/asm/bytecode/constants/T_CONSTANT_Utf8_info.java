@@ -1,11 +1,16 @@
-package com.vnetpublishing.java.asm.bytecode;
+package com.vnetpublishing.java.asm.bytecode.constants;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
+//import java.nio.charset.Charset;
+
+import com.vnetpublishing.java.asm.bytecode.T_CPInfo;
+import com.vnetpublishing.java.asm.bytecode.T_U1;
+import com.vnetpublishing.java.asm.bytecode.T_U1List;
+import com.vnetpublishing.java.asm.bytecode.T_U2;
 
 public class T_CONSTANT_Utf8_info extends T_CPInfo {
-
 
 	/**
 	 * 

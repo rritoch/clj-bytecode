@@ -2,7 +2,12 @@ package com.vnetpublishing.java.asm.bytecode;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
+
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Double_info;
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Float_info;
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Integer_info;
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Long_info;
+import com.vnetpublishing.java.asm.bytecode.constants.T_CONSTANT_Utf8_info;
 
 public class T_CPInfo implements IReader {
 
@@ -68,52 +73,24 @@ public class T_CPInfo implements IReader {
 	@Override
 	public T_CPInfo set(InputStream is) throws IOException {
 		int i = 0;
-		T_U1 tv;
 		
 		// TODO Auto-generated method stub
 		T_U1 ntag = (new T_U1()).set(is);
 		T_U1List ninfo = new T_U1List();
 		int vtag = ntag.intValue();
+		T_CPInfo r = null;
 		
 		switch(vtag) {
 			case CONSTANT_Utf8:
-				/*
-				T_U1 tv_h = (new T_U1()).set(is);
-				ninfo = ninfo.cons(tv_h);
-				
-				T_U1 tv_l = (new T_U1()).set(is);
-				ninfo = ninfo.cons(tv_l);
-					
-				int len = (new T_U2(tv_h,tv_l)).intValue();
-				
-				byte b[] = new byte[len];
-				for (i = 0; i < len; i++) {
-					tv = (new T_U1()).set(is);
-					b[i] = tv.byteValue();
-					ninfo = ninfo.cons(tv);
-				}
-				*/
-				return (new T_CONSTANT_Utf8_info()).set(is);
+				r = (new T_CONSTANT_Utf8_info()).set(is);
 			case CONSTANT_Integer:
-				for (i = 0; i < 4; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
-				break;
+				r = (new T_CONSTANT_Integer_info()).set(is);
 			case CONSTANT_Float:
-				for (i = 0; i < 4; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
-				break;
+				r = (new T_CONSTANT_Float_info()).set(is);
 			case CONSTANT_Long:
-				for (i = 0; i < 8; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
-				break;
+				r = (new T_CONSTANT_Long_info()).set(is);
 			case CONSTANT_Double:
-				for (i = 0; i < 8; i++) {
-					ninfo = ninfo.cons((new T_U1()).set(is));
-				}
-				break;
+				r = (new T_CONSTANT_Double_info()).set(is);
 			case CONSTANT_Class:
 				for (i = 0; i < 2; i++) {
 					ninfo = ninfo.cons((new T_U1()).set(is));
@@ -163,10 +140,12 @@ public class T_CPInfo implements IReader {
 				throw new IOException("Unknown CPInfo type (" + vtag + ")");
 		}
 		
-		T_CPInfo r = new T_CPInfo();
-		
-		r = new T_CPInfo(ntag,TAG,r);
-		r = new T_CPInfo(ninfo,INFO,r);
+		if (r == null) {
+			r = new T_CPInfo();
+			r = new T_CPInfo(ntag,TAG,r);
+			r = new T_CPInfo(ninfo,INFO,r);
+		}
+
 		return r;
 		
 	}
