@@ -112,6 +112,10 @@ public class T_CPInfoList  implements IListReader<T_CPInfo>, List<T_CPInfo> {
 		return i;
 	}
 
+	public T_CPInfo get(T_U2 index) {
+		return get(index.intValue());
+	}
+	
 	@Override
 	public T_CPInfo set(int index, T_CPInfo element) {
 		throw new UnsupportedOperationException();
