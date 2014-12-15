@@ -47,13 +47,77 @@
   [cf e]
     (.getMethods cf))
 
-(def get-access-flags
-  [cf e]
+(defn get-access-flags
+  [cf]
      (.getAccessFlags cf))
 
 (defn get-fields
   [cf e]
     (.getFields cf))
+
+(defn public?
+  [cf]
+    (if (> (bit-and (.intValue (get-access-flags cf)) 1) 0) 
+      true
+      false))
+                                                             
+
+(defn final?
+  [cf]
+    (if (> (bit-and (.intValue (get-access-flags cf)) 2) 0) 
+      true
+      false))
+
+(defn super?
+  [cf]
+    (if (> (bit-and (.intValue (get-access-flags cf)) 32) 0) 
+      true
+      false))
+
+(defn interface?
+  [cf]
+    (if (> (bit-and (.intValue (get-access-flags cf)) 512) 0) 
+      true
+      false))
+
+(defn abstract?
+  [cf]
+    (if (> (bit-and (.intValue (get-access-flags cf)) 1024) 0) 
+      true
+      false))
+
+(defn synthetic? 
+  [cf]
+    (if (> (bit-and (.intValue (get-access-flags cf)) 4096) 0) 
+      true
+      false))
+
+(defn annotation? 
+  [cf]
+    (if (> (bit-and (.intValue (get-access-flags cf)) 8192) 0) 
+      true
+      false))
+
+(defn enum?
+  [cf]
+    (if (> (bit-and (.intValue (get-access-flags cf)) 16384) 0) 
+      true
+      false))
+
+
+(defn get-flags
+  [cf]
+     (into []
+           (keep (partial #(if ((second %2) %1) (first %2)) 
+                          cf)
+                 [[:public public?]
+                  [:final final?]
+                  [:super super?]
+                  [:interface interface?]
+                  [:abstract abstract?]
+                  [:synthetic synthetic?]
+                  [:annotation annotation?]
+                  [:enum enum?]])))
 
 (defn -main
   [& args]
